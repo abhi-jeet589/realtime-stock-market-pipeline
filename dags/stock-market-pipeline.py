@@ -37,6 +37,7 @@ def stock_market_data():
         current_date = stock_market_data["Meta Data"]["3. Last Refreshed"]
         message = 'stock-market-{}'.format(current_date)
         attributes = stock_market_data['Time Series (Daily)'][current_date]
+        attributes['date'] = current_date
         publish_future = publisher.publish(topic_path, message.encode("utf-8"),**attributes)
         print(publish_future.result())
 
